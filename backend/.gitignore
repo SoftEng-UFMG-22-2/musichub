@@ -1,4 +1,4 @@
 .ipynb
 .pkl
-.ipynb_checkpoints
 .cache
+ipynb_checkpoints/
