@@ -2,5 +2,5 @@
 *.pkl
 *.cache
 client_token.txt
-ipynb_checkpoints/
+.ipynb_checkpoints/
 __pycache__/
