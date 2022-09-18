@@ -6,13 +6,36 @@
 
 O MusicHub é uma aplicação que utiliza da API do Spotify para gerar recomendações e playlists personalizadas para o usuário. Além disso, ele é capaz de gerar dados interessantes sobre as músicas ouvidas.
 
+## Como rodar o projeto
+1. Inicie o Backend em uma janela do terminal
+
+    ```sh
+    $ cd backend
+    $ python3 -m venv env
+    $ source env/bin/activate
+    (env)$ pip install -r requirements.txt
+    (env)$ python main.py
+    ```
+
+    Entre em [http://localhost:8000](http://localhost:8000)
+
+2. Inicie o Frontend em outra janela de terminal
+
+    ```sh
+    $ cd frontend
+    $ npm install
+    $ npm run start
+    ```
+
+    Entre em [http://localhost:3000](http://localhost:3000)
+
 ## Features
 - Login/Cadastro
 - Dados de destaque para o usuário
 - Criar playlists randomizadas com artistas selecionados pelo usuário
 - Criar playlists com músicas remixadas baseadas em playlists já feita pelo usuário
 
-## Membros 
+## Membros
 - Caio Henrique Dias Rocha - Fullstack
 - Henrique Soares Assumpção e Silva - Back-end
 - Ivan Gomes - Front-end

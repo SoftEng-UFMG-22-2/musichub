@@ -4,3 +4,4 @@
 client_token.txt
 .ipynb_checkpoints/
 __pycache__/
+backend/env/
