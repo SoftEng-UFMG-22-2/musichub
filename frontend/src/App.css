@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Little hack just for the test button to get White */
+/* --------  Remove safely  -------- */
+a.MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedSizeLarge.MuiButton-sizeLarge {
+  border-color: white;
+}
+span.MuiButton-label {
+  color: white;
+}
+/* --------------------------------- */

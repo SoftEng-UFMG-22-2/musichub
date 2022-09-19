@@ -37,6 +37,10 @@ DB: List[Artist] = [
 def index():
     return DB
 
+@app.get('/login')
+def index():
+    return "https://open.spotify.com/"
+
 
 if __name__ == "__main__":
     artist_name_list = ["BROCKHAMPTON","Kids See Ghosts","Kendrick Lamar"]
