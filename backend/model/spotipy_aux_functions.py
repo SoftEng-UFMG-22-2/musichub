@@ -1,7 +1,9 @@
-import pickle as pkl
-from typing import List
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+
+import pickle as pkl
+from typing import List
+import os
 
 from .spotify_api_functions import request_artist_data,get_auth_key
 """
@@ -32,7 +34,8 @@ def get_artist_ids(artist_name_list:list,auth_key:str,pick_most_popular:bool=Tru
         # TODO: IMPLEMENT
         pass
 
-def init_spotipy(scope:str="playlist-modify-public",redirect_uri:str="https://henrysilvacs.github.io/basicMLpy/")->tuple:
+# Requests
+def init_spotipy(scope:str="playlist-modify-public", redirect_uri:str="https://henrysilvacs.github.io/basicMLpy/")->tuple:
     credentials = pkl.load(open("spotipy_credentials.pkl","rb"))
     credentials["auth_key"]=get_auth_key(credentials["client_id"],credentials["client_secret"])
 
@@ -42,4 +45,13 @@ def init_spotipy(scope:str="playlist-modify-public",redirect_uri:str="https://he
                 client_secret=credentials['client_secret'],
                 show_dialog=True,
                 cache_path="client_token.txt"))
+
+
     return (sp,credentials)
+
+def auth_spotipy(scope:str="playlist-modify-public", redirect_uri:str="https://henrysilvacs.github.io/basicMLpy/"):
+    auth_manager = spotipy.oauth2.SpotifyOAuth(scope='playlist-modify-public',
+                                               show_dialog=True,
+                                               redirect_uri=redirect_uri)
+    auth_url = auth_manager.get_authorize_url()
+    return auth_url
