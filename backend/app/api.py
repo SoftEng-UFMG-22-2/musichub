@@ -9,14 +9,14 @@ Prerequisites
 """
 
 from urllib import request
+
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from model.spotipy_aux_functions import auth_spotipy
-from model.playlist_model import create_playlist_from_artists
-
+from model.playlist_model import PlaylistModel
 from model.artist_model import Artist
+
 
 app = FastAPI(
   title = "MusicHub",
@@ -42,6 +42,8 @@ app.add_middleware(
 # TODO: Change the location of this
 client_data = dict()
 
+#
+# playlist_model = PlaylistModel()
 # Just a root access test
 @app.get('/', tags=["root"])
 def index():
@@ -53,7 +55,8 @@ def index():
   # We define the type of operation (i.e. GET on /login)
 @app.get('/login')
 def redirect_to_authorise(): # and the first defined function is called
-    auth_url = auth_spotipy(redirect_uri="https://localhost:8000/logging-in")
+    playlist_model = PlaylistModel()
+    auth_url = playlist_model.auth_manager.get_authorize_url()
     return RedirectResponse(auth_url) # we then return either an object that turns into a JSON or a response
 
     """ Training code of the authorization request !!! REMOVE IT LATER !!!
@@ -77,10 +80,8 @@ def redirect_to_authorise(): # and the first defined function is called
 # We are coming from Spotify auth page
 @app.post('/logging-in')
 def logging_in():
-  return ["Received"]
+    return ["Received"]
 
 @app.post('/create-playlist-artists')
 def create_playlists_based_on_artists():
-  #artist_name_list = ["BROCKHAMPTON","Kids See Ghosts","Kendrick Lamar"]
-  #playlist_uri,playlist_link = create_playlist_from_artists(sp,credentials,artist_name_list)
-  return
+    return
