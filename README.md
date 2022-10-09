@@ -54,7 +54,7 @@ O MusicHub é uma aplicação que utiliza da API do Spotify para gerar recomenda
 - **Login**
 
 	- Como usuário, eu quero conseguir conectar meu Spotify na plataforma, para que o site possa acessar meus dados únicos.
-		- Criar a interface da tela de login, com o botão para autenticar com Spotify (Ivan Gomes)
+		- Criar a interface da tela de login, com o botão para autenticar com Spotify (Renato Silva Santos)
 		- Criar integração com a API do Spotify para gerar ponte de acesso a dados (Renato Silva Santos)
 
 - **Destaque**
