@@ -3,7 +3,7 @@ import './Login.css';
 import logo from '../assets/logo.png';
 import { Button } from '@material-ui/core';
 import config from '../config';
-
+import { loginUrl } from '../spotify'
 function Login() {
   return (
     <div className="login" >
@@ -20,7 +20,7 @@ function Login() {
                 }}
                 variant="outlined"
                 size="large"
-                href={`${config.backendUrl}/login`}
+                href={loginUrl}
             >
             LOGIN WITH SPOTIFY
             </Button>
