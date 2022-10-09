@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import Sidebar from './components/Sidebar';
 import Body from './Body';
+import Footer from './components/Footer';
 
 function Home({ spotify }) {
   return (
@@ -11,7 +12,7 @@ function Home({ spotify }) {
           <Body />
         </div>
 
-        {/* Footer */}
+        {/* <Footer /> */}
     </div>
   );
 }
