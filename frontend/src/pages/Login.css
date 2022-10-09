@@ -1,0 +1,15 @@
+.login {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-image: linear-gradient(green, black)
+}
+
+.login > div {
+    display: grid;
+    place-items: center;
+    margin: 15vh 50vh;
+    padding: 15vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+}

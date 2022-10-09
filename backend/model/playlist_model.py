@@ -28,7 +28,7 @@ class PlaylistModel():
 
         self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
         
-    def pick_artists_top_tracks(self,artist_name_list:list[str]) -> list[str]:
+    def pick_artists_top_tracks(self,artist_name_list:'list[str]') -> 'list[str]':
         """
         Picks top 10 tracks per artist, given list of artist names 
         """
@@ -38,9 +38,9 @@ class PlaylistModel():
             tracks_uris += [track["uri"] for track in self.sp.artist_top_tracks(artist_id,country="BR")["tracks"]]
         return tracks_uris
     
-    def pick_tracks_from_user_playlists(self,desired_playlist_names:list[str],
+    def pick_tracks_from_user_playlists(self,desired_playlist_names:'list[str]',
                                         max_tracks_per_playlist:int=10,
-                                        num_tracks_to_sample:int=100) -> list[str]:
+                                        num_tracks_to_sample:int=100) -> 'list[str]':
         """
         Randomly picks tracks from the specified playlists 
         """
@@ -71,7 +71,7 @@ class PlaylistModel():
 
         return chosen_tracks
     
-    def create_playlist(self,tracks_uris:list[str],
+    def create_playlist(self,tracks_uris:'list[str]',
                              playlist_name:str="musichub_test")->Union[str,str]:
         """
         Creates a playlist from a list of track uris 
