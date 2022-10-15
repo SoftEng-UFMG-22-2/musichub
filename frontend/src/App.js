@@ -30,6 +30,22 @@ function App() {
           user: user,
         });
       });
+
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists: playlists,
+        });
+      });
+
+      spotify.getMyTopArtists().then((artists) => {
+        dispatch({
+          type: 'GET_TOP_ARTISTS',
+          top_artists: artists,
+        });
+      });
+
+
     }
 
   }, []);
