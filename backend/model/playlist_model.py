@@ -13,16 +13,17 @@ SpotifyModel class and functions
 """
 
 class PlaylistModel():
-    def __init__(self,scope:str="playlist-modify-public", redirect_uri:str="https://localhost:8000/logging-in"):
+    def __init__(self,scope:str="playlist-modify-public", redirect_uri:str="https://localhost:8000/logging-in",
+                client_id:str=os.environ["SPOTIPY_CLIENT_ID"],client_secret:str=os.environ["SPOTIPY_CLIENT_SECRET"]):
         """
         Initializes the credentials and auth manager 
         """
-        self.auth_key=get_auth_key(os.environ["SPOTIPY_CLIENT_ID"],os.environ["SPOTIPY_CLIENT_SECRET"])
+        self.auth_key=get_auth_key(client_id,client_secret)
         
         self.auth_manager = SpotifyOAuth(scope=scope,
                     redirect_uri=redirect_uri,
-                    client_id=os.environ["SPOTIPY_CLIENT_ID"],
-                    client_secret=os.environ["SPOTIPY_CLIENT_SECRET"],
+                    client_id=client_id,
+                    client_secret=client_secret,
                     show_dialog=True,
                     cache_path="client_token.txt")
 
@@ -62,7 +63,8 @@ class PlaylistModel():
                                                                 playlist_id=playlist["id"],
                                                                 limit=num_tracks_to_sample)["items"]
 
-            curr_playlist_track_uris = [track['track']['uri'] for track in curr_playlist_tracks]
+            curr_playlist_track_uris = [track['track']['uri'] for track in curr_playlist_tracks
+            if track['track']['uri'].split(":")[1] != "local"]
 
             curr_chosen_tracks = random.sample(curr_playlist_track_uris,k=max_tracks_per_playlist)
             chosen_tracks += curr_chosen_tracks
