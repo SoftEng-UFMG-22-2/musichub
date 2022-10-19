@@ -16,6 +16,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from model.playlist_model import PlaylistModel
 from model.artist_model import Artist
+from model.spotify_api import SpotifyApi
+
+import model.configs as configs
 
 
 app = FastAPI(
@@ -39,42 +42,26 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# TODO: Change the location of this
-client_data = dict()
+# TODO: Place it somewhereelse or make it a FastAPI Session later
+sp_session = SpotifyApi()
 
-#
-# playlist_model = PlaylistModel()
 # Just a root access test
 @app.get('/', tags=["root"])
 def index():
     return [Artist(id=1, name="John Coltrane"), Artist(id=2, name="Duke Ellington")]
 
 
-# We come here from Login Button
-# How it works:
-  # We define the type of operation (i.e. GET on /login)
-@app.get('/login')
-def redirect_to_authorise(): # and the first defined function is called
-    playlist_model = PlaylistModel()
-    auth_url = playlist_model.auth_manager.get_authorize_url()
-    return RedirectResponse(auth_url) # we then return either an object that turns into a JSON or a response
+### Starts a new SpotifyApi Session
+@app.get('/start')
+def start_spotify_api_session():
+  sp_session = SpotifyApi(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
+  return sp_session.get_auth_url()
 
-    """ Training code of the authorization request !!! REMOVE IT LATER !!!
-    query_params = {
-      "client_id" : "936338be25574faa91f16cff0823a78b", # ID of the Spotify App I created to access users data
-      "response_type" : "code",
-      "redirect_uri" : "https://localhost:8000",
-      "scope" : "playlist-modify-public",
-      "show_dialog" : "true"
-    }
-
-    url = f'https://accounts.spotify.com/authorize/?'
-    query = "client_id=" + query_params["client_id"] + "&"
-    query+= "response_type=" + query_params["response_type"] + "&"
-    query+= "redirect_uri=" + query_params["redirect_uri"] + "&"
-    query+= "scope=" + query_params["scope"] + "&"
-    query+= "show_dialog=" + query_params["show_dialog"] + "&"
-    return RedirectResponse(url + query)"""
+### Returns the spotify authorization page link
+@app.get('/api/login_url')
+def get_login_url():
+    sp_session = SpotifyApi(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
+    return sp_session.get_authorize_url()
 
 
 # We are coming from Spotify auth page

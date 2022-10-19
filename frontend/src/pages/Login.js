@@ -4,6 +4,29 @@ import logo from '../assets/logo.png';
 import { Button } from '@material-ui/core';
 import config from '../config';
 import { loginUrl } from '../spotify'
+
+
+
+const startSpotifySession = async () => {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  const response = await fetch("http://localhost:8000/start", requestOptions)
+  const data = await response.json();
+
+  return data;
+}
+
+const redirectToAuthPage = async () => {
+  window.location.href = await startSpotifySession();
+}
+
+const handleLoginButton = () => {
+  // Starts a new Spotify Session and redirects to Spotify Auth page
+  redirectToAuthPage();
+}
+
 function Login() {
   return (
     <div className="login" >
@@ -20,7 +43,9 @@ function Login() {
                 }}
                 variant="outlined"
                 size="large"
-                href={loginUrl}
+                onClick={() => {
+                  handleLoginButton();
+                }}
             >
             LOGIN WITH SPOTIFY
             </Button>
