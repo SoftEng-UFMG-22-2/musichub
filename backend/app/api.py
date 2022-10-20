@@ -14,7 +14,6 @@ from fastapi import FastAPI, Query, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from model.playlist_model import PlaylistModel
 from model.artist_model import Artist
 from model.spotify_api import SpotifyApi
 
@@ -55,7 +54,7 @@ def index():
 @app.get('/start')
 def start_spotify_api_session():
   sp_session = SpotifyApi(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
-  return sp_session.get_auth_url()
+  return sp_session.get_auth_url().replace("response_type=code","response_type=token")
 
 ### Returns the spotify authorization page link
 @app.get('/api/login_url')

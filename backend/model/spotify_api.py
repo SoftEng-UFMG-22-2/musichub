@@ -12,8 +12,8 @@ class SpotifyApi():
 	def __init__(self,
 				 scope         :str = "",
 				 redirect_uri  :str = "",
-				 client_id     :str = os.environ["SPOTIPY_CLIENT_ID"],
-				 client_secret :str = os.environ["SPOTIPY_CLIENT_SECRET"]):
+				 client_id     :str = None,
+				 client_secret :str = None):
 
 		if scope == "":
 			return
@@ -21,7 +21,6 @@ class SpotifyApi():
 		"""
 		Initializes the credentials and auth manager
 		"""
-		#self.auth_key=get_auth_key(client_id,client_secret)
 
 		self.auth_manager = SpotifyOAuth(scope=scope,
 				redirect_uri=redirect_uri,
@@ -35,6 +34,42 @@ class SpotifyApi():
 	def get_auth_url(self):
 		return self.auth_manager.get_authorize_url()
 
+	def get_top_artists_dict(self,limit:int=10,time_range:str="medium_term"):
+		"""
+		Creates top artist name to image url dict
+		"""
+		top_artists_info = self.sp.current_user_top_artists(limit=limit,time_range=time_range)['items']
+		artist_name2url = {}
+
+		for artist_info in top_artists_info:
+			artist_name2url[artist_info['name']] = artist_info['images'][0]['url']
+
+		return artist_name2url
+
+	def get_top_tracks_dict(self,limit:int=10,time_range:str="medium_term"):
+		"""
+		Creates top tracks name to image url dict
+		"""
+		top_tracks_info = self.sp.current_user_top_tracks(limit=limit,time_range=time_range)['items']
+		tracks_name2url = {}
+
+		for track_info in top_tracks_info:
+			if len(track_info['album']['images']) > 0:
+				tracks_name2url[track_info['name']] = track_info['album']['images'][0]['url']
+
+		return tracks_name2url
+		
+	def get_playlist_dict(self,limit:int=30):
+		"""
+		Creates top artist name to image url dict
+		"""
+		playlists_info = self.sp.current_user_playlists(limit=limit)['items']
+		playlist_name2url = {}
+
+		for playlist_info in playlists_info:
+			if len(playlist_info['images']) > 0:
+				playlist_name2url[playlist_info['name']] = playlist_info['images'][0]['url']
+		return playlist_name2url
 
 	def pick_artists_top_tracks(self,artist_name_list:'list[str]') -> 'list[str]':
 		"""
@@ -67,8 +102,8 @@ class SpotifyApi():
 
 		for playlist in desired_playlists:
 				curr_playlist_tracks = self.sp.user_playlist_tracks(user=self.sp.me()["id"],
-																														playlist_id=playlist["id"],
-																														limit=num_tracks_to_sample)["items"]
+																	playlist_id=playlist["id"],
+																	limit=num_tracks_to_sample)["items"]
 
 				curr_playlist_track_uris = [track['track']['uri'] for track in curr_playlist_tracks
 				if track['track']['uri'].split(":")[1] != "local"]

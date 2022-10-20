@@ -7,6 +7,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import { useDataLayerValue } from './DataLayer';
 
 const spotify = new SpotifyWebApi();
+let logged = false;
 
 function App() {
   const [{ user, token }, dispatch] = useDataLayerValue();
@@ -16,7 +17,10 @@ function App() {
     window.location.hash = "";
     const _token = hash.access_token;
 
+    console.log("here!",_token,hash);
+
     if (_token) {
+      logged=true;
       dispatch({
         type: "SET_TOKEN",
         token: _token,
@@ -57,7 +61,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {
-          token ? (
+          logged ? (
             <Home spotify={spotify}/>
           ) : (
             <Login />

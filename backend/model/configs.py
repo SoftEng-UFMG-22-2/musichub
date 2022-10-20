@@ -1,7 +1,7 @@
 redirectUri = "http://localhost:3000/"
 
-clientId = "936338be25574faa91f16cff0823a78b"
-clientSecret = "ce8b13f2be744c8499610305f95f498b"
+clientId = "23ef6e5485994977adf8230c988f7188"
+clientSecret = "17d81b3a645840279a7c848a13d0ed54"
 
 scopes = [
     "ugc-image-upload",
