@@ -43,7 +43,7 @@ class SpotifyApi():
 		Initializes the authenticated Spotipy api
 	"""
 	def login(code):
-		SpotifyApi.logged = True # ! debug only
+		SpotifyApi.logged = True # ! debug only?
 		SpotifyApi.auth_manager.get_access_token(code)
 		SpotifyApi.sp = spotipy.Spotify(auth_manager=SpotifyApi.auth_manager)
 

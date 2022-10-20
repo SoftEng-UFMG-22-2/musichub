@@ -11,21 +11,28 @@ const getTopArtists = async () => {
   const response = await fetch("http://localhost:8000/api/topartists", requestOptions)
   const data = await response.json();
 
-  console.log("Received top artists:", data)
-
   return data;
 }
 
 function Body() {
   const [{ top_artists }, dispatch] = useDataLayerValue();
-  const top_artist_list = getTopArtists();
+  const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
     <div className="body">
         <div className="top-artists-container">
-          { top_artist_list?.items?.map(artist => (
-            <Artist name={artist.name} image={artist.images[0].url}/>
-          ))}
+          {
+            top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
+              <Artist name={artist} image={url} />
+            ))) :
+            Array.from(
+              { length: 8 },
+              (_, i) => (
+                <Artist name={"Loading..."} image={placeholder_link} />
+              )
+            )
+
+          }
         </div>
     </div>
   )

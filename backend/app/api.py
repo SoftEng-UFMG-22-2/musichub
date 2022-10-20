@@ -48,7 +48,6 @@ def index():
       return SpotifyApi.sp.me()
     return "Not logged"
 
-
 ## Login Step 1
 #   Starts a new SpotifyApi Session and
 #   returns the spotify authorization page link
@@ -67,14 +66,31 @@ def login(code):
   return RedirectResponse("http://localhost:3000")
 
 ### Checks if a User is logged in
+@app.get('/api/logout')
+def logout():
+  SpotifyApi.logged = False
+
+### Checks if a User is logged in
 @app.get('/api/isloggedin')
 def is_logged_in():
   return SpotifyApi.logged
+
+### Returns info about the user
+@app.get('/me')
+def index():
+    if SpotifyApi.logged:
+      return SpotifyApi.sp.me()
+    return "Not logged"
 
 ### Returns the top artists of the user
 @app.get('/api/topartists')
 def get_login_url():
     return SpotifyApi.get_top_artists_dict(8)
+
+### Returns the top artists of the user
+@app.get('/api/playlists')
+def get_login_url():
+    return SpotifyApi.get_playlist_dict(10)
 
 
 @app.post('/create-playlist-artists')

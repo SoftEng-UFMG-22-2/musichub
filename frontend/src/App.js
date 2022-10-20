@@ -1,89 +1,63 @@
-import React, { useEffect, useState } from 'react';
 import './App.css';
-import Login from './pages/Login'
-import Home from './pages/Home'
-import { getTokenFromUrl } from './spotify';
-import SpotifyWebApi from 'spotify-web-api-js'
+
+import React, { useEffect, useState } from 'react';
 import { useDataLayerValue } from './DataLayer';
 
-const spotify = new SpotifyWebApi();
+import Login from './pages/Login'
+import Home from './pages/Home'
 
-const isLoggedIn = async () => {
-  const requestOptions = {
-    method: "GET",
-  };
+import SpotifyApi from './spotify';
+//import SpotifyWebApi from 'spotify-web-api-js'
 
-  const response = await fetch("http://localhost:8000/api/isloggedin", requestOptions)
-  const loggedin = await response.json();
-  console.log("here!",loggedin);
-  return loggedin;
-}
+const spotify = new SpotifyApi();
 
 function App() {
-  const [{ logged }, dispatch] = useDataLayerValue();
+
+  const [{ logged, top_artists }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
-    const hash = getTokenFromUrl();
-    window.location.hash = "";
-    const _token = hash.access_token;
 
-
-
-    if (_token) {
-      //logged=true;
+    spotify.isLoggedIn().then(_logged => {
       dispatch({
-        type: "SET_TOKEN",
-        token: _token,
-      });
-
-      spotify.setAccessToken(_token);
-
-      spotify.getMe().then(user => {
-        dispatch({
-          type: 'SET_USER',
-          user: user,
-        });
-      });
-
-      spotify.getUserPlaylists().then((playlists) => {
-        dispatch({
-          type: 'SET_PLAYLISTS',
-          playlists: playlists,
-        });
-      });
-
-      spotify.getMyTopArtists().then((artists) => {
-        dispatch({
-          type: 'GET_TOP_ARTISTS',
-          top_artists: artists,
-        });
-      });
-    }
-
-    // Only being used down here
-    let _logged = isLoggedIn()
-    if (_logged) {
-      dispatch({
-        type: "SET_LOGGED",
+        type: 'SET_LOGGED',
         logged: _logged,
       });
-    }
+      if (_logged) {
+        spotify.getMe().then(user => {
+          dispatch({
+            type: 'SET_USER',
+            user: user,
+          });
+        });
 
+        spotify.getUserPlaylists().then((playlists) => {
+          dispatch({
+            type: 'SET_PLAYLISTS',
+            playlists: playlists,
+          });
+        });
+        console.log("Start get top artists");
+        spotify.getTopArtists().then((artists) => {
+          console.log("Getting artists", artists);
+          dispatch({
+            type: 'GET_TOP_ARTISTS',
+            top_artists: artists,
+          });
+        });
+
+        console.log("End get top artists");
+      }
+    });
   }, []);
 
-  console.log(logged ? "Logged 🤠" : "Not logged 👽");
+  console.log(logged==true ? "Logged 🤠" : "Not logged 👽", "(logged is", logged, ")");
 
   return (
     <div className="App">
       <header className="App-header">
         {
-          logged ? (
-            <Home spotify={spotify}/>
-          ) : (
-            <Login />
-          )
+          logged==false ? <Login /> : <Home spotify={spotify} />
         }
-
       </header>
     </div>
   );
