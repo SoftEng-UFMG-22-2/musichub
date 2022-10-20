@@ -1,11 +1,10 @@
 import React from 'react';
 import './Login.css';
+
 import logo from '../assets/logo.png';
+import SpotifyLogo from '../assets/spotify_logo.png';
+
 import { Button } from '@material-ui/core';
-import config from '../config';
-import { loginUrl } from '../spotify'
-
-
 
 const startSpotifySession = async () => {
   const requestOptions = {
@@ -32,23 +31,33 @@ function Login() {
     <div className="login" >
         {/* MusicHub Logo */}
         <div classname="login-container">
-            <img src={logo} alt="MusicHub logo"/>
+          <img src={logo} alt="MusicHub logo" className="login-logo" />
+          <div className="login-text">
+            <p className='login-text-top'>MusicHub é um web app que lhe permite explorar os dados de sua conta no spotify. Descubra seus artistas e músicas favoritos ou crie playlists customizadas.</p>
+
+            <p>Para começar, entre com sua conta através do botão abaixo!</p>
+          </div>
+          <div className="login-button-wrapper">
             <Button
                 style={{
                     borderRadius: 35,
                     backgroundColor: "#1DB954",
-                    padding: "18px 36px",
-                    fontSize: "18px",
+                    padding: "12px 24px",
+
+                    fontSize: "16px",
                     color: "white"
                 }}
+                className="login-button"
                 variant="outlined"
                 size="large"
                 onClick={() => {
                   handleLoginButton();
                 }}
             >
-            LOGIN WITH SPOTIFY
+              <img src={SpotifyLogo} alt="Spotify logo" className="button-icon" height="auto" width="30vw" />
+              Entrar com o Spotify
             </Button>
+          </div>
             {/* Login button */}
         </div>
     </div>
