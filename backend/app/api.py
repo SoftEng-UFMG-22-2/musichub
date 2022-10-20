@@ -66,6 +66,11 @@ def login(code):
   SpotifyApi.login(code)
   return RedirectResponse("http://localhost:3000")
 
+### Checks if a User is logged in
+@app.get('/api/isloggedin')
+def is_logged_in():
+  return SpotifyApi.logged
+
 ### Returns the top artists of the user
 @app.get('/api/topartists')
 def get_login_url():

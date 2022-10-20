@@ -7,20 +7,30 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import { useDataLayerValue } from './DataLayer';
 
 const spotify = new SpotifyWebApi();
-let logged = false;
+
+const isLoggedIn = async () => {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  const response = await fetch("http://localhost:8000/api/isloggedin", requestOptions)
+  const loggedin = await response.json();
+  console.log("here!",loggedin);
+  return loggedin;
+}
 
 function App() {
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ logged }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     const hash = getTokenFromUrl();
     window.location.hash = "";
     const _token = hash.access_token;
 
-    console.log("here!",_token,hash);
+
 
     if (_token) {
-      logged=true;
+      //logged=true;
       dispatch({
         type: "SET_TOKEN",
         token: _token,
@@ -48,14 +58,20 @@ function App() {
           top_artists: artists,
         });
       });
+    }
 
-
+    // Only being used down here
+    let _logged = isLoggedIn()
+    if (_logged) {
+      dispatch({
+        type: "SET_LOGGED",
+        logged: _logged,
+      });
     }
 
   }, []);
 
-  console.log("🤠", user);
-  console.log("👽", token);
+  console.log(logged ? "Logged 🤠" : "Not logged 👽");
 
   return (
     <div className="App">
