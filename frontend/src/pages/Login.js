@@ -11,7 +11,7 @@ const startSpotifySession = async () => {
     method: "GET",
   };
 
-  const response = await fetch("http://localhost:8000/start", requestOptions)
+  const response = await fetch("http://localhost:8000/api/start", requestOptions)
   const data = await response.json();
 
   return data;
@@ -30,7 +30,7 @@ function Login() {
   return (
     <div className="login" >
         {/* MusicHub Logo */}
-        <div classname="login-container">
+        <div className="login-container">
           <img src={logo} alt="MusicHub logo" className="login-logo" />
           <div className="login-text">
             <p className='login-text-top'>MusicHub é um web app que lhe permite explorar os dados de sua conta no spotify. Descubra seus artistas e músicas favoritos ou crie playlists customizadas.</p>

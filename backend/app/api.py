@@ -41,32 +41,36 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-# TODO: Place it somewhereelse or make it a FastAPI Session later
-sp_session = SpotifyApi()
-
 # Just a root access test
 @app.get('/', tags=["root"])
 def index():
-    return [Artist(id=1, name="John Coltrane"), Artist(id=2, name="Duke Ellington")]
+    if SpotifyApi.logged:
+      return SpotifyApi.sp.me()
+    return "Not logged"
 
 
-### Starts a new SpotifyApi Session
-@app.get('/start')
+## Login Step 1
+#   Starts a new SpotifyApi Session and
+#   returns the spotify authorization page link
+@app.get('/api/start')
 def start_spotify_api_session():
-  sp_session = SpotifyApi(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
-  return sp_session.get_auth_url().replace("response_type=code","response_type=token")
+  SpotifyApi.start(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
+  #return sp_session.get_auth_url().replace("response_type=code","response_type=token")
+  return SpotifyApi.get_auth_url()
 
-### Returns the spotify authorization page link
-@app.get('/api/login_url')
+## Login Step 2
+#   Finishs initializing the API
+#   using the auth code on the URL
+@app.get('/api/login/')
+def login(code):
+  SpotifyApi.login(code)
+  return RedirectResponse("http://localhost:3000")
+
+### Returns the top artists of the user
+@app.get('/api/topartists')
 def get_login_url():
-    sp_session = SpotifyApi(configs.scopes, configs.redirectUri, configs.clientId, configs.clientSecret)
-    return sp_session.get_authorize_url()
+    return SpotifyApi.get_top_artists_dict(8)
 
-
-# We are coming from Spotify auth page
-@app.post('/logging-in')
-def logging_in():
-    return ["Received"]
 
 @app.post('/create-playlist-artists')
 def create_playlists_based_on_artists():

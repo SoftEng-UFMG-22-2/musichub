@@ -8,37 +8,53 @@ from typing import Union
 import random
 import os
 
+"""
+This is a Static Class as our app is made for a single user only
+- Do not instantiate it
+"""
 class SpotifyApi():
-	def __init__(self,
-				 scope         :str = "",
-				 redirect_uri  :str = "",
-				 client_id     :str = None,
-				 client_secret :str = None):
+	# We now have 2 main static class variables:
+	#  - SpotifyApi.auth_manager
+	#  - SpotifyApi.sp   (this one is authenticated under the current User)
 
-		if scope == "":
-			return
+	logged = False # ! debug only
 
-		"""
-		Initializes the credentials and auth manager
-		"""
+	"""
+		Initializes the auth manager
+	"""
+	def start(scope         :str = "",
+				 		redirect_uri  :str = "",
+				 		client_id     :str = None,
+				 		client_secret :str = None):
 
-		self.auth_manager = SpotifyOAuth(scope=scope,
-				redirect_uri=redirect_uri,
-				client_id=client_id,
-				client_secret=client_secret,
-				show_dialog=True,
-				cache_path="client_token.txt")
+				SpotifyApi.logged = False # ! debug only
 
-		self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
+				if scope == "":
+							return
 
-	def get_auth_url(self):
-		return self.auth_manager.get_authorize_url()
+				SpotifyApi.auth_manager = SpotifyOAuth(scope=scope,
+						redirect_uri=redirect_uri,
+						client_id=client_id,
+						client_secret=client_secret,
+						show_dialog=True,
+						cache_path="client_token.txt")
 
-	def get_top_artists_dict(self,limit:int=10,time_range:str="medium_term"):
+	"""
+		Initializes the authenticated Spotipy api
+	"""
+	def login(code):
+		SpotifyApi.logged = True # ! debug only
+		SpotifyApi.auth_manager.get_access_token(code)
+		SpotifyApi.sp = spotipy.Spotify(auth_manager=SpotifyApi.auth_manager)
+
+	def get_auth_url():
+		return SpotifyApi.auth_manager.get_authorize_url()
+
+	def get_top_artists_dict(limit:int=10,time_range:str="medium_term"):
 		"""
 		Creates top artist name to image url dict
 		"""
-		top_artists_info = self.sp.current_user_top_artists(limit=limit,time_range=time_range)['items']
+		top_artists_info = SpotifyApi.sp.current_user_top_artists(limit=limit,time_range=time_range)['items']
 		artist_name2url = {}
 
 		for artist_info in top_artists_info:
@@ -46,11 +62,11 @@ class SpotifyApi():
 
 		return artist_name2url
 
-	def get_top_tracks_dict(self,limit:int=10,time_range:str="medium_term"):
+	def get_top_tracks_dict(limit:int=10,time_range:str="medium_term"):
 		"""
 		Creates top tracks name to image url dict
 		"""
-		top_tracks_info = self.sp.current_user_top_tracks(limit=limit,time_range=time_range)['items']
+		top_tracks_info = SpotifyApi.sp.current_user_top_tracks(limit=limit,time_range=time_range)['items']
 		tracks_name2url = {}
 
 		for track_info in top_tracks_info:
@@ -58,12 +74,12 @@ class SpotifyApi():
 				tracks_name2url[track_info['name']] = track_info['album']['images'][0]['url']
 
 		return tracks_name2url
-		
-	def get_playlist_dict(self,limit:int=30):
+
+	def get_playlist_dict(limit:int=30):
 		"""
 		Creates top artist name to image url dict
 		"""
-		playlists_info = self.sp.current_user_playlists(limit=limit)['items']
+		playlists_info = SpotifyApi.sp.current_user_playlists(limit=limit)['items']
 		playlist_name2url = {}
 
 		for playlist_info in playlists_info:
@@ -71,23 +87,23 @@ class SpotifyApi():
 				playlist_name2url[playlist_info['name']] = playlist_info['images'][0]['url']
 		return playlist_name2url
 
-	def pick_artists_top_tracks(self,artist_name_list:'list[str]') -> 'list[str]':
+	def pick_artists_top_tracks(artist_name_list:'list[str]') -> 'list[str]':
 		"""
 		Picks top 10 tracks per artist, given list of artist names
 		"""
-		artist_ids = get_artist_ids(artist_name_list,self.auth_key)
+		artist_ids = get_artist_ids(artist_name_list,SpotifyApi.auth_key)
 		tracks_uris = []
 		for artist_id in artist_ids:
-				tracks_uris += [track["uri"] for track in self.sp.artist_top_tracks(artist_id,country="BR")["tracks"]]
+				tracks_uris += [track["uri"] for track in SpotifyApi.sp.artist_top_tracks(artist_id,country="BR")["tracks"]]
 		return tracks_uris
 
-	def pick_tracks_from_user_playlists(self,desired_playlist_names:'list[str]',
+	def pick_tracks_from_user_playlists(desired_playlist_names:'list[str]',
                                         max_tracks_per_playlist:int=10,
                                         num_tracks_to_sample:int=100) -> 'list[str]':
 		"""
 		Randomly picks tracks from the specified playlists
 		"""
-		all_user_playlists = self.sp.current_user_playlists()
+		all_user_playlists = SpotifyApi.sp.current_user_playlists()
 
 		desired_playlists = []
 
@@ -101,7 +117,7 @@ class SpotifyApi():
 		chosen_tracks = []
 
 		for playlist in desired_playlists:
-				curr_playlist_tracks = self.sp.user_playlist_tracks(user=self.sp.me()["id"],
+				curr_playlist_tracks = SpotifyApi.sp.user_playlist_tracks(user=SpotifyApi.sp.me()["id"],
 																	playlist_id=playlist["id"],
 																	limit=num_tracks_to_sample)["items"]
 
@@ -115,16 +131,16 @@ class SpotifyApi():
 
 		return chosen_tracks
 
-	def create_playlist(self,tracks_uris:'list[str]',
+	def create_playlist(tracks_uris:'list[str]',
                              playlist_name:str="musichub_test")->Union[str,str]:
 		"""
 		Creates a playlist from a list of track uris
 		"""
-		playlist_data = self.sp.user_playlist_create(
-								user=self.sp.me()["id"],
+		playlist_data = SpotifyApi.sp.user_playlist_create(
+								user=SpotifyApi.sp.me()["id"],
 								name=playlist_name)
 
-		self.sp.playlist_add_items(
+		SpotifyApi.sp.playlist_add_items(
 								playlist_id=playlist_data["id"],
 								items=tracks_uris
 						)
