@@ -1,4 +1,4 @@
 .home-body {
     display: flex;
-    
+    position: "sticky";
 }
