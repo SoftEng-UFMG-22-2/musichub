@@ -5,6 +5,10 @@ import './index.css';
 import { DataLayer } from './DataLayer';
 import reducer, { initialState } from './reducer';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import TopArtists from './pages/TopArtists';
+import UserPlaylists from './pages/UserPlaylists';
+import Statistics from './pages/Statistics';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,8 +20,13 @@ root.render(
         
         <Routes>
     
-          <Route path="/" element={<App />}/>
-          
+        
+          <Route path="/" element={<Home />}>
+            <Route path="/" element={<TopArtists />} />
+            <Route path="/playlists" element={<UserPlaylists />} />
+            <Route path="/stats" element={<Statistics />} />
+          </Route>
+
         </Routes>
 
       </DataLayer>
