@@ -19,7 +19,7 @@ function TopArtists() {
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="top-artists">
+    <div className="body">
         <div className="top-artists-container">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (

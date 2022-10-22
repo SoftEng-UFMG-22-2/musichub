@@ -15,15 +15,15 @@ function Sidebar() {
             {/* TODO linkar imagem do usuario a essa imagem */}
             <img className="sidebar-avatar" src="https://cdn-icons-png.flaticon.com/512/147/147133.png"/>
             
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <SidebarOption title="Home" Icon={HomeIcon}/>
             </Link>
             
-            <Link to="playlists">
+            <Link to="playlists" style={{ textDecoration: 'none' }}>
               <SidebarOption title="Playlists" Icon={PlaylistPlayIcon}/>
             </Link>
             
-            <Link to="stats">
+            <Link to="stats" style={{ textDecoration: 'none' }}>
               <SidebarOption title="Estatísticas" Icon={BarChartIcon}/>
             </Link>
             

@@ -12,9 +12,9 @@ function Home({ spotify }) {
       <div className="home">
           <div className="home-body">
             <Sidebar />
+  
             <Outlet />
   
-
           </div>
       </div>
 
