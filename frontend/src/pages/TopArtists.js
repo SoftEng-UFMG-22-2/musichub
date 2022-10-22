@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
-import './Body.css'
+import './TopArtists.css'
 import Artist from './components/Artist'
 
 const getTopArtists = async () => {
@@ -14,12 +14,12 @@ const getTopArtists = async () => {
   return data;
 }
 
-function Body() {
+function TopArtists() {
   const [{ top_artists }, dispatch] = useDataLayerValue();
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="body">
+    <div className="top-artists">
         <div className="top-artists-container">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
@@ -38,4 +38,4 @@ function Body() {
   )
 }
 
-export default Body
+export default TopArtists;

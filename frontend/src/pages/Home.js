@@ -1,9 +1,9 @@
 import React from 'react';
 import './Home.css';
 import Sidebar from './components/Sidebar';
-import Body from './Body';
+import TopArtists from './TopArtists';
 import Statistics from './Statistics'
-import Playlists from './Playlists';
+import UserPlaylists from './UserPlaylists';
 import { Routes, Route, Link } from 'react-router-dom';
 
 function Home({ spotify }) {
@@ -11,10 +11,9 @@ function Home({ spotify }) {
       <div className="home">
           <div className="home-body">
             <Sidebar />
-            
             <Routes>
-              <Route path="/" element={<Body/>} />
-              <Route path="playlists" element={<Playlists/>} />
+              <Route path="/" element={<TopArtists/>} />
+              <Route path="playlists" element={<UserPlaylists/>} />
               <Route path="stats" element={<Statistics/>} />
             </Routes>
   

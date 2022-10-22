@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
-import './Body.css'
+import './TopArtists.css'
 import Playlist from './components/Playlist'
 
 const getUserPlaylists = async () => {
