@@ -5,8 +5,7 @@ function Statistics() {
 
   return (
     <div>
-        <Sidebar />
-
+        <h1>STATISTICS</h1>
     </div>
   )
 

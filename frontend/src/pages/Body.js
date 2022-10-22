@@ -33,7 +33,6 @@ function Body() {
             )
 
           }
-          
         </div>
     </div>
   )

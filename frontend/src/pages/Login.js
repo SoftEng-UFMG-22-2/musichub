@@ -58,7 +58,7 @@ function Login() {
               Entrar com o Spotify
             </Button>
           </div>
-            {/* Login button */}
+          
         </div>
     </div>
   )

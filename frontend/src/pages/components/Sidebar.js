@@ -5,19 +5,30 @@ import HomeIcon from '@mui/icons-material/Home';
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { useDataLayerValue } from '../../DataLayer';
-
+import { Link } from 'react-router-dom';
 
 function Sidebar() {
  
   return (
-    <div className="sidebar">
-        {/* TODO linkar imagem do usuario a essa imagem */}
-        <img className="sidebar-avatar" src="https://cdn-icons-png.flaticon.com/512/147/147133.png"/>
-        <SidebarOption title="Home" Icon={HomeIcon}/>
-        <SidebarOption title="Playlists" Icon={PlaylistPlayIcon}/>
-        <SidebarOption title="Estatísticas" Icon={BarChartIcon}/>
-     
-    </div>
+    
+        <div className="sidebar">
+            {/* TODO linkar imagem do usuario a essa imagem */}
+            <img className="sidebar-avatar" src="https://cdn-icons-png.flaticon.com/512/147/147133.png"/>
+            
+            <Link to="/">
+              <SidebarOption title="Home" Icon={HomeIcon}/>
+            </Link>
+            
+            <Link to="playlists">
+              <SidebarOption title="Playlists" Icon={PlaylistPlayIcon}/>
+            </Link>
+            
+            <Link to="stats">
+              <SidebarOption title="Estatísticas" Icon={BarChartIcon}/>
+            </Link>
+            
+        </div>
+
   )
 }
 
