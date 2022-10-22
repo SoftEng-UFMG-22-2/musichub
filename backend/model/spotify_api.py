@@ -71,7 +71,7 @@ class SpotifyApi():
 
 		for track_info in top_tracks_info:
 			if len(track_info['album']['images']) > 0:
-				tracks_name2url[track_info['name']] = track_info['album']['images'][0]['url']
+				tracks_name2url[track_info['name'].split("(")[0]] = track_info['album']['images'][0]['url']
 
 		return tracks_name2url
 

@@ -26,7 +26,7 @@ function Body() {
               <Artist name={artist} image={url} />
             ))) :
             Array.from(
-              { length: 8 },
+              { length: 10 },
               (_, i) => (
                 <Artist name={"Loading..."} image={placeholder_link} />
               )
