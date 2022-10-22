@@ -1,5 +1,18 @@
 import React from 'react'
-import Sidebar from './components/Sidebar'
+
+
+
+const getUserStatistics = async () => {
+  const requestOptiions = {
+    method: "GET",
+  };
+
+  // const response = await fetch("http://localhost:8000", requestOptions)
+  // // const data = await response.json();
+
+  // return data
+}
+
 
 function Statistics() {
 

@@ -1,4 +1,5 @@
 .home-body {
     display: flex;
     position: "sticky";
+    overflow: hidden;
 }

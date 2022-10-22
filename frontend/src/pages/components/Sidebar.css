@@ -1,5 +1,4 @@
 .sidebar {
-    position: "sticky";
     min-height: 100vh;
     flex: 0.2;
     color: white;
@@ -7,6 +6,7 @@
     min-width: 250px;
     background-color: #040404;
     text-decoration: none;
+    overflow: hidden;
 }
 
 .sidebar-avatar {
@@ -15,5 +15,6 @@
     width: 100%;
     margin-top: 100px;
     padding-bottom: 40px;
+    
 }
 

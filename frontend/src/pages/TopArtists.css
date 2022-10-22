@@ -1,17 +1,16 @@
 .body {
     display: flexbox;
-    position: "sticky";
     flex: 0.8;
-    min-height: 100vh;
     color: white;
     padding: 40px;
     background: linear-gradient(#4a2768, black);
+    overflow: hidden;
 
 }
 
 .top-artists-container {
-    max-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    overflow: hidden;
 }
