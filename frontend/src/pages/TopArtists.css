@@ -1,17 +1,17 @@
 .top-artists {
-    display: flexbox;
-    position: "sticky";
-    flex: 0.8;
-    min-height: 100vh;
+ 
     color: white;
-    padding: 40px;
-    background: linear-gradient(#4a2768, black);
-
+    padding: 2vh;
+    justify-content: center;
+    margin:auto;
+    
 }
 
 .top-artists-container {
-    max-height: 100vh;
+    
+    max-height: 90vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    align-items: center;
 }
