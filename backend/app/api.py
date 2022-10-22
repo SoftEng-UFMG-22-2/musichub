@@ -84,12 +84,19 @@ def index():
 
 ### Returns the top artists of the user
 @app.get('/api/topartists')
-def get_login_url():
-    return SpotifyApi.get_top_artists_dict(8)
+def get_top_artists():
+    return SpotifyApi.get_top_artists_dict(10)
 
-### Returns the top artists of the user
+
+### Returns the playlists of the user
+@app.get('/api/toptracks')
+def get_user_top_tracks():
+    return SpotifyApi.get_top_tracks_dict(10)
+
+
+### Returns the playlists of the user
 @app.get('/api/playlists')
-def get_login_url():
+def get_user_playlists():
     return SpotifyApi.get_playlist_dict(10)
 
 
