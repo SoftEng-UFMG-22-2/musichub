@@ -3,16 +3,6 @@ import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
 import Artist from './components/Artist'
 
-const getTopArtists = async () => {
-  const requestOptions = {
-    method: "GET",
-  };
-
-  const response = await fetch("http://localhost:8000/api/topartists", requestOptions)
-  const data = await response.json();
-
-  return data;
-}
 
 function TopArtists() {
   const [{ top_artists }, dispatch] = useDataLayerValue();
@@ -27,7 +17,7 @@ function TopArtists() {
               <Artist name={artist} image={url} />
             ))) :
             Array.from(
-              { length: 10 },
+              { length:10 },
               (_, i) => (
                 <Artist name={"Loading..."} image={placeholder_link} />
               )

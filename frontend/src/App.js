@@ -36,16 +36,20 @@ function App() {
             playlists: playlists,
           });
         });
-        console.log("Start get top artists");
+        
         spotify.getTopArtists().then((artists) => {
-          console.log("Getting artists", artists);
           dispatch({
             type: 'GET_TOP_ARTISTS',
             top_artists: artists,
           });
         });
 
-        console.log("End get top artists");
+        spotify.getTopTracks().then((tracks) => {
+          dispatch({
+            type: 'GET_TOP_TRACKS',
+            top_tracks: tracks,
+          });
+        });
       }
     });
   }, []);

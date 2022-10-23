@@ -226,6 +226,13 @@ var SpotifyApi = (function () {
         return _checkParamsAndPerformRequest(requestData, options, callback);
     };
 
+    Constr.prototype.getTopTracks = function (options, callback) {
+      var requestData = {
+          url: _baseUri + '/toptracks'
+      };
+      return _checkParamsAndPerformRequest(requestData, options, callback);
+  };
+
     Constr.prototype.getUserPlaylists = function (options, callback) {
         var requestData = {
             url: _baseUri + '/playlists'
