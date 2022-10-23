@@ -9,9 +9,9 @@
 
 .top-artists-container {
     
-    max-height: 90vh;
-    display: grid;
-  grid-template-column    t(6, 1fr);
-    align-items: center;
+  display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: hidden;
 
 }
