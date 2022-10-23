@@ -1,4 +1,4 @@
-.artist-box{
+.box{
     width: 180px;
     height: 220px;
     text-align: center;
@@ -10,13 +10,13 @@
     padding-bottom: 10px;
     overflow: hidden;
 }
-.artist-box img {
+.box img {
     top: 0;
     left: 0;
     height: 180px;
     width: 180px;
 }
-.artist-box h3 {
+.h3 {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
