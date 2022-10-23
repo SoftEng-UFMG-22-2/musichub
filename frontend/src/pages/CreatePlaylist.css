@@ -5,3 +5,37 @@
     flex-wrap: wrap;
     flex-direction: row;
 }
+.select {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 300px;
+  gap: 1px;
+}
+
+.select__item {
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Heebo", sans-serif;
+  text-align: center;
+  border-radius: 3px;
+  background: #eeeeee;
+  transition: 0.1s;
+}
+
+.h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+.select .box{
+    transition: 0.8s;
+}
+.select .box:hover{
+  box-shadow: 5px 5px  5px 2px  #01471a;
+}
+.select__item--selected{
+  box-shadow: 5px 5px  5px 2px  #01471a;
+  color: #ffffff; 
+}
