@@ -5,7 +5,7 @@ import './index.css';
 import { DataLayer } from './DataLayer';
 import reducer, { initialState } from './reducer';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Home from './pages/Home';
+import PageLayout from './pages/PageLayout';
 import TopArtists from './pages/TopArtists';
 import UserPlaylists from './pages/UserPlaylists';
 import MixarPlaylists from './pages/MixarPlaylists';
@@ -21,7 +21,7 @@ root.render(
         <Routes>
     
         
-          <Route path="/" element={<Home />}>
+          <Route path="/" element={<PageLayout />}>
             <Route path="/" element={<TopArtists />} />
             <Route path="/playlists" element={<UserPlaylists />} />
             <Route path="/mixar" element={<MixarPlaylists />} />

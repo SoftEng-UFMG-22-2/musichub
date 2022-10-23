@@ -1,13 +1,13 @@
 import React from 'react';
-import './Home.css';
+import './PageLayout.css';
 import Sidebar from './components/Sidebar';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 
 
-function Home({ spotify }) {
+function PageLayout({ spotify }) {
   return (
-      <div className="home">
-          <div className="home-body">
+      <div className="page-layout">
+          <div className="page-layout-body">
             <Sidebar />
   
             <Outlet />
@@ -18,4 +18,4 @@ function Home({ spotify }) {
   );
 }
 
-export default Home;
+export default PageLayout;
