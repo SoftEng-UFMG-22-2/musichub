@@ -11,8 +11,8 @@ function CreatePlaylist() {
 
   return (
     <div className="body">
+      <h2>Selecione artistas para compor uma nova playlist: </h2>
         <div className="top-artists-container">
-          <h2>Selecione artistas para compor uma nova playlist: </h2>
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <Artist name={artist} image={url} />

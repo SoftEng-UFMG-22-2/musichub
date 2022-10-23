@@ -240,6 +240,15 @@ var SpotifyApi = (function () {
         return _checkParamsAndPerformRequest(requestData, options, callback);
     };
 
+    Constr.prototype.setArtistsForPlaylist = function (options, callback) {
+      var requestData = {
+          url: _baseUri + '/playlists',
+          type: 'PUT'
+          //postData: artistList
+      };
+      return _checkParamsAndPerformRequest(requestData, options, callback);
+  };
+
     return Constr;
 })();
 

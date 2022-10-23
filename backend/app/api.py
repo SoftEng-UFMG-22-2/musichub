@@ -63,7 +63,7 @@ def start_spotify_api_session():
 @app.get('/api/login/')
 def login(code):
   SpotifyApi.login(code)
-  return RedirectResponse("http://localhost:3000")
+  return RedirectResponse("http://localhost:3000/artistas")
 
 ### Checks if a User is logged in
 @app.get('/api/logout')
