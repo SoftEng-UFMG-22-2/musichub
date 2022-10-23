@@ -23,7 +23,7 @@ root.render(
         <Routes>
     
         
-          <Route path="/" element={<PageLayout />}>
+          <Route path="/" element={<App />}>
             <Route path="/" element={<Home />}>
               <Route path="artistas" element={<TopArtists />}/>
               <Route path="musicas" element={<TopSongs />}/>
