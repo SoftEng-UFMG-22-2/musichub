@@ -1,0 +1,12 @@
+.navbar-option {
+    text-transform: uppercase;
+    width: 30vh;
+    height: 10vh;
+    font-size: larger;
+    color: gray;
+    transition: 200ms color ease-in;
+}
+
+.navbar-option:hover {
+    color:white;
+}

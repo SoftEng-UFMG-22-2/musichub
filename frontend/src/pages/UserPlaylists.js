@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
+import './UserPlaylists.css'
 import Playlist from './components/Playlist'
 
 const getUserPlaylists = async () => {
@@ -19,7 +20,7 @@ function UserPlaylists() {
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="userplaylist">
+    <div className="userplaylist, body">
         <div className="user-playlists-container">
           {
             user_playlists? (Object.entries(user_playlists)?.map(([playlist, url]) => (

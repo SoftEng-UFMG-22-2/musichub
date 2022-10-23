@@ -1,4 +1,8 @@
 .home-body {
-    display: flex;
-    position: "sticky";
+    display: flexbox;
+    flex: 0.8;
+    color: white;
+    padding: 40px;
+    background: linear-gradient(#4a2768, black);
+    overflow: hidden;
 }

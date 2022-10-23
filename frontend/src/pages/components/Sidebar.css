@@ -1,18 +1,26 @@
 .sidebar {
-    position: "sticky";
     min-height: 100vh;
     flex: 0.2;
     color: white;
     padding: 0 10px;
     min-width: 250px;
     background-color: #040404;
+    text-decoration: none;
+    overflow: hidden;
+}
 
+.sidebar-logo {
+    width: 100%;
 }
 
 .sidebar-avatar {
     object-fit: contain;
-    height: 200px;
-    width: 100%;
-    margin-top: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    width: 50%;
     padding-bottom: 40px;
+    
 }
+

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDataLayerValue } from './DataLayer';
 
 import Login from './pages/Login'
-import Home from './pages/Home'
+import PageLayout from './pages/PageLayout'
 
 import SpotifyApi from './spotify';
 //import SpotifyWebApi from 'spotify-web-api-js'
@@ -56,7 +56,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {
-          logged==false ? <Login /> : <Home spotify={spotify} />
+          logged==false ? <Login /> : <PageLayout spotify={spotify} />
         }
       </header>
     </div>
