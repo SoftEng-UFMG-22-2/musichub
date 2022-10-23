@@ -1,0 +1,19 @@
+.body {
+    display: flexbox;
+    flex: 0.8;
+    color: white;
+    padding: 40px;
+    overflow: hidden;
+
+}
+
+.top-songs-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+h2 {
+    width: 100%;
+}

@@ -3,5 +3,10 @@
     width: 30vh;
     height: 10vh;
     font-size: larger;
-    color: white;
+    color: gray;
+    transition: 200ms color ease-in;
+}
+
+.navbar-option:hover {
+    color:white;
 }
