@@ -9,11 +9,17 @@
     overflow: hidden;
 }
 
+.sidebar-logo {
+    width: 100%;
+}
+
 .sidebar-avatar {
     object-fit: contain;
-    height: 200px;
-    width: 100%;
-    margin-top: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    width: 50%;
     padding-bottom: 40px;
     
 }
