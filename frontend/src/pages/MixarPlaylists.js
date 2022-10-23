@@ -4,19 +4,25 @@ import Artist from './components/Artist'
 
 import './MixarPlaylists.css'
 
+const state = {
+  playlists: [...Object.entries(playlists).map(playlist => { return { ...playlist[0], selected : false } } )]
+}
 
+const togglePlaylistSelected = () => {
+  
+}
 
-const renderPlaylists = (playlist, url) => {
-  return <div onClick> <Artist name={playlist} image={url} /> </div>
+const renderPlaylists = (playlist_name, url) => {
+  return <div onClick={() => { togglePlaylistSelected(playlist_name); }}>
+            <Artist name={playlist} image={url} />
+        </div>
 }
 
 function MixarPlaylists() {
   const [{ playlists }, dispatch] = useDataLayerValue();
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
-  //const state = {
-  //  playlists : [...playlists.map( artist)]
-  //}
+  
 
   return (
     <div className="playlists-body">
@@ -24,8 +30,8 @@ function MixarPlaylists() {
           <h2>Selecione playlists para mixar: </h2>
           
           {
-          playlists ? (Object.entries(playlists)?.map(([playlist, url]) => {
-            return renderPlaylists(playlist, url)
+          playlists ? (Object.entries(playlists)?.map(([playlist_name, url]) => {
+            return renderPlaylists(playlist_name, url, idx)
           }))
             :
           
