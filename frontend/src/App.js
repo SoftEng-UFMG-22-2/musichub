@@ -60,7 +60,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {
-          logged==false ? <Login /> : <PageLayout spotify={spotify} />
+          logged == false ? <Login spotify={ spotify } /> : <PageLayout spotify={spotify} />
         }
       </header>
     </div>

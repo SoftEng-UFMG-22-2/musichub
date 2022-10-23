@@ -204,7 +204,20 @@ var SpotifyApi = (function () {
      *                                                          *
      ************************************************************/
 
+     Constr.prototype.login = function (options, callback) {
+        var requestData = {
+          url: _baseUri + '/start'
+        };
+        return _checkParamsAndPerformRequest(requestData, options, callback);
+     };
 
+     Constr.prototype.logout = function (options, callback) {
+        var requestData = {
+          url: _baseUri + '/logout'
+        };
+        return _checkParamsAndPerformRequest(requestData, options, callback);
+    };
+  
     Constr.prototype.isLoggedIn = function (options, callback) {
         var requestData = {
           url: _baseUri + '/isloggedin'
@@ -240,14 +253,14 @@ var SpotifyApi = (function () {
         return _checkParamsAndPerformRequest(requestData, options, callback);
     };
 
-    Constr.prototype.setArtistsForPlaylist = function (options, callback) {
+    Constr.prototype.createPlaylist = function (options, callback) {
       var requestData = {
-          url: _baseUri + '/playlists',
-          type: 'PUT'
-          //postData: artistList
+        url: _baseUri + '/create-playlist',
+        type: 'POST',
+        postData: options
       };
       return _checkParamsAndPerformRequest(requestData, options, callback);
-  };
+    };
 
     return Constr;
 })();

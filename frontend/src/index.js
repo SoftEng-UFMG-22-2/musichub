@@ -28,9 +28,9 @@ root.render(
               <Route path="artistas" element={<TopArtists />}/>
               <Route path="musicas" element={<TopTracks />}/>
             </Route>
-            <Route path="/create_playlis" element={<TopArtists />}/>
             <Route path="/playlists" element={<CreatePlaylist />} />
             <Route path="/mixar" element={<MixarPlaylists />} />
+            <Route path="/logout" element={<MixarPlaylists />} />
           </Route>
 
         </Routes>

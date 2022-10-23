@@ -10,9 +10,9 @@ function CreatePlaylist() {
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="body">
+    <div className="user-playlists-body">
       <h2>Selecione artistas para compor uma nova playlist: </h2>
-        <div className="top-artists-container">
+        <div className="user-playlists-container">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <Artist name={artist} image={url} />

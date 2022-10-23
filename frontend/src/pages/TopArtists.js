@@ -9,7 +9,7 @@ function TopArtists() {
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="body">
+    <div className="artists">
           <h2>Seus artistas mais ouvidos: </h2>
         <div className="top-artists-container">
           {

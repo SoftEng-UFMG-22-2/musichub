@@ -69,6 +69,7 @@ def login(code):
 @app.get('/api/logout')
 def logout():
   SpotifyApi.logged = False
+  return RedirectResponse("http://localhost:3000/")
 
 ### Checks if a User is logged in
 @app.get('/api/isloggedin')
@@ -91,7 +92,7 @@ def get_top_artists():
 ### Returns the playlists of the user
 @app.get('/api/toptracks')
 def get_user_top_tracks():
-    return SpotifyApi.get_top_tracks_dict(10)
+    return SpotifyApi.get_top_tracks_dict(13)
 
 
 ### Returns the playlists of the user
