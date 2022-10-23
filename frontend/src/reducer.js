@@ -33,12 +33,12 @@ const reducer = (state, action) => {
                 ...state,
                 playlists: action.playlists,
             };
-        case 'GET_TOP_ARTISTS':
+        case 'SET_TOP_ARTISTS':
             return {
                 ...state,
                 top_artists: action.top_artists,
             };
-        case 'GET_TOP_TRACKS':
+        case 'SET_TOP_TRACKS':
             return {
                 ...state,
                 top_tracks: action.top_tracks,

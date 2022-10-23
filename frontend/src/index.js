@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import PageLayout from './pages/PageLayout';
 import TopArtists from './pages/TopArtists';
 import TopTracks from './pages/TopTracks';
-import UserPlaylists from './pages/UserPlaylists';
+import CreatePlaylist from './pages/CreatePlaylist';
 import MixarPlaylists from './pages/MixarPlaylists';
 import Home from './pages/Home';
 
@@ -28,7 +28,8 @@ root.render(
               <Route path="artistas" element={<TopArtists />}/>
               <Route path="musicas" element={<TopTracks />}/>
             </Route>
-            <Route path="/playlists" element={<UserPlaylists />} />
+            <Route path="/create_playlis" element={<TopArtists />}/>
+            <Route path="/playlists" element={<CreatePlaylist />} />
             <Route path="/mixar" element={<MixarPlaylists />} />
           </Route>
 

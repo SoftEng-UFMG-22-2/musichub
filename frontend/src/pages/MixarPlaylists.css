@@ -1,0 +1,7 @@
+.playlists-container {
+  max-height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}

@@ -97,7 +97,7 @@ def get_user_top_tracks():
 ### Returns the playlists of the user
 @app.get('/api/playlists')
 def get_user_playlists():
-    return SpotifyApi.get_playlist_dict(10)
+    return SpotifyApi.get_playlist_dict(30)
 
 
 @app.post('/create-playlist')

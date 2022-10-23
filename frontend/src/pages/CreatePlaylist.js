@@ -1,25 +1,24 @@
 import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
+import './TopArtists.css'
+import './CreatePlaylist.css'
 import Artist from './components/Artist'
 
-import './TopArtists.css'
-import './MixarPlaylists.css'
 
-
-function MixarPlaylists() {
-  const [{ playlists }, dispatch] = useDataLayerValue();
+function CreatePlaylist() {
+  const [{ top_artists }, dispatch] = useDataLayerValue();
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
     <div className="body">
-        <div className="playlists-container">
-          <h2>Selecione playlists para mixar: </h2>
+        <div className="top-artists-container">
+          <h2>Selecione artistas para compor uma nova playlist: </h2>
           {
-            playlists? (Object.entries(playlists)?.map(([playlist, url]) => (
-              <Artist name={playlist} image={url} />
+            top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
+              <Artist name={artist} image={url} />
             ))) :
             Array.from(
-              { length: 10 },
+              { length:10 },
               (_, i) => (
                 <Artist name={"Loading..."} image={placeholder_link} />
               )
@@ -31,4 +30,4 @@ function MixarPlaylists() {
   )
 }
 
-export default MixarPlaylists
+export default CreatePlaylist

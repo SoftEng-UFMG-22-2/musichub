@@ -39,14 +39,14 @@ function App() {
         
         spotify.getTopArtists().then((artists) => {
           dispatch({
-            type: 'GET_TOP_ARTISTS',
+            type: 'SET_TOP_ARTISTS',
             top_artists: artists,
           });
         });
 
         spotify.getTopTracks().then((tracks) => {
           dispatch({
-            type: 'GET_TOP_TRACKS',
+            type: 'SET_TOP_TRACKS',
             top_tracks: tracks,
           });
         });
