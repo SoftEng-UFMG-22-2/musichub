@@ -20,11 +20,11 @@ function Sidebar() {
             </Link>
             
             <Link to="playlists" style={{ textDecoration: 'none' }}>
-              <SidebarOption title="Playlists" Icon={PlaylistPlayIcon}/>
+              <SidebarOption title="Criar Playlist" Icon={PlaylistPlayIcon}/>
             </Link>
             
             <Link to="mixar" style={{ textDecoration: 'none' }}>
-              <SidebarOption title="Mixar Playlists" Icon={BarChartIcon}/>
+              <SidebarOption title="Mixar Playlist" Icon={BarChartIcon}/>
             </Link>
             
         </div>
