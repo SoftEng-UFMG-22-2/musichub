@@ -23,8 +23,8 @@ function Sidebar() {
               <SidebarOption title="Playlists" Icon={PlaylistPlayIcon}/>
             </Link>
             
-            <Link to="stats" style={{ textDecoration: 'none' }}>
-              <SidebarOption title="Estatísticas" Icon={BarChartIcon}/>
+            <Link to="mixar" style={{ textDecoration: 'none' }}>
+              <SidebarOption title="Mixar Playlists" Icon={BarChartIcon}/>
             </Link>
             
         </div>

@@ -21,6 +21,7 @@ function TopArtists() {
   return (
     <div className="body">
         <div className="top-artists-container">
+          <h1>Seus artistas mais ouvidos: </h1>
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <Artist name={artist} image={url} />

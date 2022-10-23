@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import TopArtists from './pages/TopArtists';
 import UserPlaylists from './pages/UserPlaylists';
-import Statistics from './pages/Statistics';
+import MixarPlaylists from './pages/MixarPlaylists';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,7 +24,7 @@ root.render(
           <Route path="/" element={<Home />}>
             <Route path="/" element={<TopArtists />} />
             <Route path="/playlists" element={<UserPlaylists />} />
-            <Route path="/stats" element={<Statistics />} />
+            <Route path="/mixar" element={<MixarPlaylists />} />
           </Route>
 
         </Routes>

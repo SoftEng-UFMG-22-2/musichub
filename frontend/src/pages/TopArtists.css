@@ -14,3 +14,7 @@
     flex-direction: row;
     overflow: hidden;
 }
+
+h1 {
+    width: 100%;
+}

@@ -1,9 +1,6 @@
 import React from 'react';
 import './Home.css';
 import Sidebar from './components/Sidebar';
-import TopArtists from './TopArtists';
-import Statistics from './Statistics'
-import UserPlaylists from './UserPlaylists';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 
 
