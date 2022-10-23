@@ -18,7 +18,7 @@ const startSpotifySession = async () => {
 }
 
 const redirectToAuthPage = async (spotify) => {
-  spotify.login().then(_url => { window.location.href = _url })
+  spotify.login().then((_url) => { window.location.href = _url })
 }
 
 const handleLoginButton = (spotify) => {
