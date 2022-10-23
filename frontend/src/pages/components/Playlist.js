@@ -1,13 +1,18 @@
 import React from 'react'
-import './Playlist.css'
+import './Box.css'
 
 function Playlist({name, image}) {
   return (
-    <div className="playlist-box">
-        <img src={image}></img>
-        <h3>{name}</h3>
+
+    <div className='select'>
+
+      <div className="box">
+
+          <img src={image}></img>
+
+          <h3>{name}</h3>
+        </div>
     </div>
   )
 }
-
 export default Playlist

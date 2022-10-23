@@ -10,8 +10,8 @@ function TopArtists() {
 
   return (
     <div className="body">
-        <div className="top-artists-container">
           <h2>Seus artistas mais ouvidos: </h2>
+        <div className="top-artists-container">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <Artist name={artist} image={url} />
