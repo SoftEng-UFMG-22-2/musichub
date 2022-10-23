@@ -1,19 +1,19 @@
-.body {
-    display: flexbox;
-    flex: 0.8;
-    color: white;
-    padding: 40px;
-    overflow: hidden;
 
+.top-artists {
+ 
+    color: white;
+    padding: 2vh;
+    justify-content: center;
+    margin:auto;
+    
 }
 
 .top-artists-container {
+    
+    max-height: 90vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    overflow: hidden;
-}
+    align-items: center;
 
-h2 {
-    width: 100%;
 }

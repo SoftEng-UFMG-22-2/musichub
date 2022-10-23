@@ -27,7 +27,7 @@ function TopArtists() {
               <Artist name={artist} image={url} />
             ))) :
             Array.from(
-              { length: 10 },
+              { length:10 },
               (_, i) => (
                 <Artist name={"Loading..."} image={placeholder_link} />
               )

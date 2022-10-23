@@ -1,0 +1,25 @@
+.box{
+    width: 180px;
+    height: 220px;
+    text-align: center;
+    justify-content: center;
+    background-color:  #1E1E1E;
+    box-shadow: 0px 5px 5px #01471a;
+    border-radius: 10px;
+    margin: 1vw;
+    padding-bottom: 10px;
+    overflow: hidden;
+}
+.box img {
+    top: 0;
+    left: 0;
+    height: 180px;
+    width: 180px;
+}
+.h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: whitesmoke;
+
+}
