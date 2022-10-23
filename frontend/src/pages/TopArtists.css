@@ -11,9 +11,8 @@
 .top-artists-container {
     
     max-height: 90vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+    display: grid;
+  grid-template-columns: repeat(5, 1fr);
     align-items: center;
 
 }
