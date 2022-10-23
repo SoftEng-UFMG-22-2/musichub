@@ -1,7 +1,7 @@
 redirectUri = "http://localhost:8000/api/login/"
 
-clientId = "23ef6e5485994977adf8230c988f7188"
-clientSecret = "17d81b3a645840279a7c848a13d0ed54"
+clientId = "29f7b55b013d45b6b33514caa4f2cf55"
+clientSecret = "d7e846605e6f4f21a03279340cfabc81"
 scopes = [
     "ugc-image-upload",
     # Spotify Connect

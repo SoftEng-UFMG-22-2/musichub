@@ -2,7 +2,9 @@ import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
 import Artist from './components/Artist'
 
+import './TopArtists.css'
 import './MixarPlaylists.css'
+import './components/Box.css'
 
 
 function MixarPlaylists() {
@@ -10,7 +12,7 @@ function MixarPlaylists() {
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
   return (
-    <div className="playlists-body">
+    <div className="body">
         <div className="playlists-container">
           <h2>Selecione playlists para mixar: </h2>
           {
@@ -18,7 +20,7 @@ function MixarPlaylists() {
               <Artist name={playlist} image={url} />
             ))) :
             Array.from(
-              { length: 10 },
+             { length:10 },
               (_, i) => (
                 <Artist name={"Loading..."} image={placeholder_link} />
               )
