@@ -17,16 +17,16 @@ const startSpotifySession = async () => {
   return data;
 }
 
-const redirectToAuthPage = async (spotify) => {
-  spotify.login().then((_url) => { window.location.href = _url })
+const redirectToAuthPage = async () => {
+  window.location.href = await startSpotifySession();
 }
 
-const handleLoginButton = (spotify) => {
+const handleLoginButton = () => {
   // Starts a new Spotify Session and redirects to Spotify Auth page
-  redirectToAuthPage(spotify);
+  redirectToAuthPage();
 }
 
-function Login(spotify) {
+function Login() {
   return (
     <div className="login" >
         {/* MusicHub Logo */}
@@ -51,7 +51,7 @@ function Login(spotify) {
                 variant="outlined"
                 size="large"
                 onClick={() => {
-                  handleLoginButton(spotify);
+                  handleLoginButton();
                 }}
             >
             <img src={SpotifyLogo} alt="Spotify logo" className="button-icon" height="auto" width="30vw" />

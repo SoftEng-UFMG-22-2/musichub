@@ -4,10 +4,9 @@ import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
 import './CreatePlaylist.css'
 
-
 class CustomSelect {
   constructor(originalSelect) {
-    console.log("Hi");
+    console.log("----Acess Constructor------");
     this.originalSelect = originalSelect;
     this.customSelect = document.createElement("div");
     this.customSelect.classList.add("select");
@@ -60,20 +59,24 @@ class CustomSelect {
   }
 }
 
-document.querySelectorAll(".custom-select").forEach((selectElement) => {
-  new CustomSelect(selectElement);
-});
 
+function auxilia(){
+  
+}
 
 function CreatePlaylist() {
+  document.querySelectorAll(".custom-select").forEach((selectElement) => {
+    new CustomSelect(selectElement);
+  });
   const [{ top_artists }, dispatch] = useDataLayerValue();
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
-
-  return (
+    console.log("CreatePlaylis function");
+      return (
     <div className="body">
           <h2>Selecione artistas para compor uma nova playlist: </h2>
-        <div className="top-artists-container">
-          <select name="artist" class="custom-select" multiple>
+      <div className="top-artists-container">
+        
+          <select multiple={true} name="artist" class="custom-select">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <option value={artist}>
@@ -90,8 +93,10 @@ function CreatePlaylist() {
 
           }
           </select>
+          
         </div>
     </div>
+  
   )
 }
 

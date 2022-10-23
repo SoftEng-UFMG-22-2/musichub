@@ -3,6 +3,8 @@ import './PageLayout.css';
 import Sidebar from './components/Sidebar';
 import { Outlet } from 'react-router-dom';
 
+import './TopArtists.css'
+
 
 function PageLayout() {
   return (

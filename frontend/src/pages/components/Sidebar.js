@@ -8,6 +8,26 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useDataLayerValue } from '../../DataLayer';
 import { Link } from 'react-router-dom';
 
+const logoutSpotifySession = async () => {
+  const requestOptions = {
+    method: "GET",
+  };
+
+  const response = await fetch("http://localhost:8000/api/logout", requestOptions)
+  const data = await response.json();
+
+  return data;
+}
+
+const redirectToLogin = async () => {
+  logoutSpotifySession();
+}
+
+
+const handleLogout = () => {
+  redirectToLogin();
+}
+
 function Sidebar() {
  
   return (
@@ -29,9 +49,9 @@ function Sidebar() {
               <SidebarOption title="Mixar Playlist" Icon={BarChartIcon}/>
             </Link>
 
-            <Link to="logout" style={{ textDecoration: 'none' }}>
+            <a href="http://localhost:3000/" onClick={() => { handleLogout(); }} style={{ textDecoration: 'none' }}>
               <SidebarOption title="Sair" Icon={LogoutIcon}/>
-            </Link>
+            </a>
             
         </div>
 

@@ -14,6 +14,7 @@ import Home from './pages/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  
   <React.StrictMode>
 
     <BrowserRouter>
@@ -29,8 +30,8 @@ root.render(
               <Route path="musicas" element={<TopTracks />}/>
             </Route>
             <Route path="/playlists" element={<CreatePlaylist />} />
+            
             <Route path="/mixar" element={<MixarPlaylists />} />
-            <Route path="/logout" element={<MixarPlaylists />} />
           </Route>
 
         </Routes>
