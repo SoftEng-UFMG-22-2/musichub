@@ -102,7 +102,7 @@ def get_user_playlists():
 
 
 @app.post('/create-playlist')
-def create_playlist_based_on_artists(artist_name_list:list[str]):
+def create_playlist_based_on_artists(artist_name_list):
   SpotifyApi.logData = artist_name_list
 
 @app.get('/logData')
@@ -114,6 +114,6 @@ def getLogData():
 #  return SpotifyApi.create_playlist(artist_top_tracks,playlist_name="MusicHub:TopArtistsMix")
 
 @app.post('/create-mix-playlist')
-def create_playlist_based_on_playlists(desired_playlist_names:list[str]):
+def create_playlist_based_on_playlists(desired_playlist_names):
   playlists_tracks = SpotifyApi.pick_tracks_from_user_playlists(desired_playlist_names)
   return SpotifyApi.create_playlist(playlists_tracks, playlist_name="MusicHub:PlaylistMix")

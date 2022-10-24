@@ -23,12 +23,12 @@ function App() {
         logged: _logged,
       });
       if (_logged) {
-        spotify.getMe().then(user => {
-          dispatch({
-            type: 'SET_USER',
-            user: user,
-          });
-        });
+        //spotify.getMe().then(user => {
+        //  dispatch({
+        //    type: 'SET_USER',
+        //    user: user,
+        // });
+        //});
 
         spotify.getUserPlaylists().then((playlists) => {
           dispatch({
@@ -36,7 +36,7 @@ function App() {
             playlists: playlists,
           });
         });
-        
+
         spotify.getTopArtists().then((artists) => {
           dispatch({
             type: 'SET_TOP_ARTISTS',
