@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
-import Artist from './components/Artist'
+import Playlist from './components/Playlist'
 
 import './MixarPlaylists.css'
 
@@ -31,14 +31,14 @@ function MixarPlaylists() {
 
           {
           playlists ? (Object.entries(playlists)?.map(([playlist_name, url]) => (
-            <Artist name={playlist_name} image={url} />
+            <Playlist name={playlist_name} image={url} />
           ))) :
             //return renderPlaylists(playlist_name, url, idx)
           //))
           //  :
 
           Array.from({ length: 10 },(_, i) => (
-                <Artist name={"Loading..."} image={placeholder_link} />))
+                <Playlist name={"Loading..."} image={placeholder_link} />))
           }
 
         </div>
