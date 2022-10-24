@@ -1,9 +1,28 @@
-
 import React, { useState } from 'react';
 import { useDataLayerValue } from '../DataLayer';
+import axios from 'axios';
 import './TopArtists.css'
 import './CreatePlaylist.css'
 import Playlist from './components/Playlist'
+import SendButton from './components/SendButton';
+
+
+const postPlaylist = async (data) => {
+  const requestOptions = {
+    method: "POST",
+    body: JSON.stringify(data)
+  };
+
+  //const response = await fetch("http://localhost:8000/api/create-mix-playlist", requestOptions)
+  const response = await axios.post("http://localhost:8000/api/create-artist-playlist", data);
+  //const data = await response.json();
+
+  //return data;
+}
+
+const handleButton = async (state) => {
+  postPlaylist(state);
+}
 
 
 export default function CreatePlaylist() {
@@ -28,7 +47,12 @@ export default function CreatePlaylist() {
   };
   return (
     <div className="body-playlist">
+      <div className="top-container">
       <h2>Selecione artistas para compor uma nova playlist: </h2>
+      <div onClick={() => {handleButton(state)}}>
+      <SendButton />
+      </div>
+      </div>
       <div className="playlists-container">
         {
           top_artists ? (Object.entries(top_artists)?.map(([playlist_name, url]) => (

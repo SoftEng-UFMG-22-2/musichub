@@ -38,6 +38,7 @@ class SpotifyApi():
 						client_secret=client_secret,
 						show_dialog=True,
 						cache_path="client_token.txt")
+				SpotifyApi.auth_key = get_auth_key(client_id,client_secret)
 
 	"""
 		Initializes the authenticated Spotipy api
@@ -101,7 +102,7 @@ class SpotifyApi():
 		artist_ids = get_artist_ids(artist_name_list,SpotifyApi.auth_key)
 		tracks_uris = []
 		for artist_id in artist_ids:
-				tracks_uris += [track["uri"] for track in SpotifyApi.sp.artist_top_tracks(artist_id,country="BR")["tracks"]]
+				tracks_uris += [track["uri"] for track in SpotifyApi.sp.artist_top_tracks(artist_id,country="BR")["tracks"][:5]]
 		return tracks_uris
 
 	def pick_tracks_from_user_playlists(desired_playlist_names:'list[str]',

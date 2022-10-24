@@ -113,3 +113,12 @@ def create_playlist_based_on_playlists(desired_playlist_names: dict = Body(...))
   playlists_tracks = SpotifyApi.pick_tracks_from_user_playlists(list(desired_playlist_names.keys()))
 
   return SpotifyApi.create_playlist(playlists_tracks, playlist_name="MusicHub:PlaylistMix")
+
+
+@app.post('/api/create-artist-playlist')
+def create_playlist_based_on_artists(desired_artists_names: dict = Body(...)):
+
+  tracks = SpotifyApi.pick_artists_top_tracks(list(desired_artists_names.keys()))
+  print(tracks)
+
+  return SpotifyApi.create_playlist(tracks, playlist_name="MusicHub:ArtistMix")

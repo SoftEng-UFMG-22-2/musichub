@@ -20,7 +20,6 @@ const postPlaylist = async (data) => {
   //return data;
 }
 
-
 const handleButton = async (state) => {
   postPlaylist(state);
 }
@@ -53,7 +52,7 @@ export default function MixarPlaylists() {
   return (
     <div className="body-playlist">
       <div className="top-container">
-      <h2>Selecione artistas para compor uma nova playlist: </h2>
+      <h2>Selecione playlists para compor uma nova playlist: </h2>
       <div onClick={() => {handleButton(state)}}>
       <SendButton />
       </div>
