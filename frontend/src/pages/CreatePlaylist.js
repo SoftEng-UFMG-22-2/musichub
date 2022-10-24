@@ -3,7 +3,9 @@ import React from 'react';
 import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
 import './CreatePlaylist.css'
+import Artist from './components/Artist'
 
+/*
 class CustomSelect {
   constructor(originalSelect) {
     console.log("----Acess Constructor------");
@@ -61,7 +63,7 @@ class CustomSelect {
 
 
 function auxilia(){
-  
+
 }
 
 function CreatePlaylist() {
@@ -75,8 +77,8 @@ function CreatePlaylist() {
     <div className="body">
           <h2>Selecione artistas para compor uma nova playlist: </h2>
       <div className="top-artists-container">
-        
-          <select multiple={true} name="artist" class="custom-select">
+
+          <select multiple={true} name="artist" className="custom-select">
           {
             top_artists? (Object.entries(top_artists)?.map(([artist, url]) => (
               <option value={artist}>
@@ -93,12 +95,63 @@ function CreatePlaylist() {
 
           }
           </select>
-          
+
         </div>
     </div>
-  
+
   )
 }
 
 export default CreatePlaylist
+*/
 
+const toggleArtistSelected2 = (artist) => {
+  console.log("Artist selected:", artist);
+}
+
+function CreatePlaylist() {
+  const [{ top_artists }, dispatch] = useDataLayerValue();
+  const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
+
+
+  const state = top_artists
+                ?
+                  Object.assign({}, ...Object.entries(top_artists).map(([k, _]) => ({ [k]: false })))
+                :
+                  {};
+
+  const toggleArtistSelected = (artist) => {
+    setState
+    console.log("Artist selected:", artist, state);
+  };
+
+  return (
+    <div className="body">
+          <h2>Selecione artistas para compor uma nova playlist: </h2>
+      <div className="top-artists-container">
+
+        {
+          top_artists ? (Object.entries(top_artists)?.map(([artist, url]) => (
+            <div onClick={() => { toggleArtistSelected(artist); }}>
+              <div className={state[artist]?"selected":"not-selected"}>
+                <Artist name={artist} image={url} />
+              </div>
+            </div>
+          ))) :
+          Array.from(
+            { length:10 },
+            (_, i) => (
+              <Artist name={"Loading..."} image={placeholder_link} />
+            )
+          )
+        }
+
+
+
+      </div>
+    </div>
+
+  )
+}
+
+export default CreatePlaylist
