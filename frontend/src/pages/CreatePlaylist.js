@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
 import './CreatePlaylist.css'
@@ -109,20 +109,23 @@ const toggleArtistSelected2 = (artist) => {
   console.log("Artist selected:", artist);
 }
 
-function CreatePlaylist() {
+export default function CreatePlaylist() {
   const [{ top_artists }, dispatch] = useDataLayerValue();
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
+  const [state, setState] = useState(top_artists
+                                            ?
+                                              Object.assign({}, ...Object.entries(top_artists).map(([k, _]) => ({ [k]: false })))
+                                            :
+                                              {});
 
-  const state = top_artists
-                ?
-                  Object.assign({}, ...Object.entries(top_artists).map(([k, _]) => ({ [k]: false })))
-                :
-                  {};
+  
 
   const toggleArtistSelected = (artist) => {
-    setState
-    console.log("Artist selected:", artist, state);
+    const nState = state;
+    nState[artist] = !nState[artist];
+    setState(nState);
+    console.log(state);
   };
 
   return (
@@ -153,5 +156,3 @@ function CreatePlaylist() {
 
   )
 }
-
-export default CreatePlaylist
