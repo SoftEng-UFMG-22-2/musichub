@@ -105,7 +105,7 @@ class SpotifyApi():
 		return tracks_uris
 
 	def pick_tracks_from_user_playlists(desired_playlist_names:'list[str]',
-                                        max_tracks_per_playlist:int=10,
+                                        max_tracks_per_playlist:int=1,
                                         num_tracks_to_sample:int=100) -> 'list[str]':
 		"""
 		Randomly picks tracks from the specified playlists

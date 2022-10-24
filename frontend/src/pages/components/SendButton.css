@@ -1,0 +1,19 @@
+.btn {
+    border-radius: 35px;
+    background-color: #2e2e2e;
+    width: 150px;
+    padding: 12px 24px;
+    color: gray;
+    font-size: 16px;
+    border: 1px solid white;
+    transition: 200ms color ease-in;
+    transition: 200ms box-shadow ease-in;
+    font-weight: 900;
+    margin: 40px;
+
+}
+
+.btn:hover {
+    color: white;
+    box-shadow: 0px 8px 15px rgba(255, 255, 255, 0.1);
+}

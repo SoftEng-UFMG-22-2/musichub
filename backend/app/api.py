@@ -10,7 +10,7 @@ Prerequisites
 
 from urllib import request
 
-from fastapi import FastAPI, Query, Request
+from fastapi import FastAPI, Body, Query, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -105,15 +105,11 @@ def get_user_playlists():
 def create_playlist_based_on_artists(artist_name_list):
   SpotifyApi.logData = artist_name_list
 
-@app.get('/logData')
-def getLogData():
-  return SpotifyApi.logData
 
-#def create_playlist_based_on_artists(artist_name_list:list[str]):
-#  artist_top_tracks = SpotifyApi.pick_artists_top_tracks(artist_name_list)
-#  return SpotifyApi.create_playlist(artist_top_tracks,playlist_name="MusicHub:TopArtistsMix")
+@app.post('/api/create-mix-playlist')
+def create_playlist_based_on_playlists(desired_playlist_names: dict = Body(...)):
 
-@app.post('/create-mix-playlist')
-def create_playlist_based_on_playlists(desired_playlist_names):
-  playlists_tracks = SpotifyApi.pick_tracks_from_user_playlists(desired_playlist_names)
+
+  playlists_tracks = SpotifyApi.pick_tracks_from_user_playlists(list(desired_playlist_names.keys()))
+
   return SpotifyApi.create_playlist(playlists_tracks, playlist_name="MusicHub:PlaylistMix")
