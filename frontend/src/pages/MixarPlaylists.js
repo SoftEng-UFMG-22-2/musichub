@@ -1,49 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDataLayerValue } from '../DataLayer';
-import Artist from './components/Artist'
+import Playlist from './components/Playlist'
 
 import './MixarPlaylists.css'
+import './TopArtists.css'
 
 
-const togglePlaylistSelected = () => {
 
-}
 
-const renderPlaylists = (playlist_name, url) => {
-  return <div onClick={() => { togglePlaylistSelected(playlist_name); }}>
-
-        </div>
-}
-
-function MixarPlaylists() {
+export default function MixarPlaylists() {
   const [{ playlists }, dispatch] = useDataLayerValue();
+
   const placeholder_link = "https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg"
 
-  //const state = {
-  //  playlists: [...Object.entries(playlists).map(playlist => { return { ...playlist[0], selected : false } } )]
-  //}
+  const [state, setState] = useState(playlists
+                                            ?
+                                              Object.assign({}, ...Object.entries(playlists).map(([k, _]) => ({ [k]: false })))
+                                            :
+                                              {});
 
+  const[list, setList] = useState([])
 
+  const toggleArtistSelected = (artist) => {
+    const nState = state;
+    nState[artist] = !nState[artist];
+    setState(nState);
+    setList([])
+    console.log(state);
+  };
   return (
-    <div className="playlists-body">
-        <div className="playlists-container">
-          <h2>Selecione playlists para mixar: </h2>
-
-          {
+    <div className="body-playlist">
+      <h2>Selecione artistas para compor uma nova playlist: </h2>
+      <div className="playlists-container">
+        {
           playlists ? (Object.entries(playlists)?.map(([playlist_name, url]) => (
-            <Artist name={playlist_name} image={url} />
+            <div onClick={() => { toggleArtistSelected(playlist_name); }}>
+              <div className={state[playlist_name]?"selected":"not-selected"}>
+                <Playlist name={playlist_name} image={url} />
+              </div>
+            </div>
           ))) :
-            //return renderPlaylists(playlist_name, url, idx)
-          //))
-          //  :
-
-          Array.from({ length: 10 },(_, i) => (
-                <Artist name={"Loading..."} image={placeholder_link} />))
-          }
-
-        </div>
+          Array.from(
+            { length:10 },
+            (_, i) => (
+              <Playlist name={"Loading..."} image={placeholder_link} />
+            )
+          )
+        }
+      </div>
     </div>
+
   )
 }
-
-export default MixarPlaylists

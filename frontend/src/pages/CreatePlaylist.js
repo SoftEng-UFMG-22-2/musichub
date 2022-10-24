@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDataLayerValue } from '../DataLayer';
 import './TopArtists.css'
 import './CreatePlaylist.css'
-import Artist from './components/Artist'
+import Playlist from './components/Playlist'
 
 
 export default function CreatePlaylist() {
@@ -27,21 +27,21 @@ export default function CreatePlaylist() {
     console.log(state);
   };
   return (
-    <div className="body">
-          <h2>Selecione artistas para compor uma nova playlist: </h2>
-      <div className="top-artists-container">
+    <div className="body-playlist">
+      <h2>Selecione artistas para compor uma nova playlist: </h2>
+      <div className="playlists-container">
         {
-          top_artists ? (Object.entries(top_artists)?.map(([artist, url]) => (
-            <div onClick={() => { toggleArtistSelected(artist); }}>
-              <div className={state[artist]?"selected":"not-selected"}>
-                <Artist name={artist} image={url} />
+          top_artists ? (Object.entries(top_artists)?.map(([playlist_name, url]) => (
+            <div onClick={() => { toggleArtistSelected(playlist_name); }}>
+              <div className={state[playlist_name]?"selected":"not-selected"}>
+                <Playlist name={playlist_name} image={url} />
               </div>
             </div>
           ))) :
           Array.from(
             { length:10 },
             (_, i) => (
-              <Artist name={"Loading..."} image={placeholder_link} />
+              <Playlist name={"Loading..."} image={placeholder_link} />
             )
           )
         }

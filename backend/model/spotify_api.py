@@ -87,7 +87,7 @@ class SpotifyApi():
 		playlist_name2url = {}
 
 		for playlist_info in playlists_info:
-			if playlist_info['owner']['display_name'] ==  SpotifyApi.sp.me()['id'] and len(playlist_info['images']) > 0:
+			if len(playlist_info['images']) > 0:
 				playlist_name2url[playlist_info['name']] = playlist_info['images'][0]['url']
 
 			if len(playlist_name2url) == num_playlists:

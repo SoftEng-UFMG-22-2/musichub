@@ -4,7 +4,19 @@
     color: white;
     padding: 40px;
     overflow: auto;
+
   }
+
+.playlists-container {
+  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: hidden;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
 
 
 .user-playlists-container {
