@@ -1,7 +1,7 @@
 # MusicHub
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/72170805/188336584-800c548f-9015-4d0d-bf61-b6cab4e50b7f.png">
+  <img src="https://i.postimg.cc/J41rgGM4/logo-login.png">
 </p>
 
 O MusicHub é uma aplicação que utiliza da API do Spotify para gerar recomendações e playlists personalizadas para o usuário. Além disso, ele é capaz de gerar dados interessantes sobre as músicas ouvidas.
@@ -44,7 +44,6 @@ O MusicHub é uma aplicação que utiliza da API do Spotify para gerar recomenda
 ## Tecnologias
 - React
 - Django
-- PostgreSQL
 
 ## Backlog da Sprint
 
@@ -70,5 +69,4 @@ O MusicHub é uma aplicação que utiliza da API do Spotify para gerar recomenda
 
 	- Eu como usuário, quero poder criar playlists baseadas em minhas playlists anteriores, para que eu consiga montar automaticamente novas playlists que me surpreendam e que ainda se encaixem com meus gostos
 		- Desenvolver e implementar a interface. Deve haver uma grid ou lista com todas as playlists do usuário e a possibilidade de selecionar um número N de playlists. (Caio Henrique Dias Rocha)
-		- Também deve haver uma área onde o usuário irá inserir um número X de músicas que a playlist final terá (Ivan Gomes)
-		- A partir das playlists selecionadas pelo usuário, unir X músicas aleatórias destas e criar uma nova playlist para o usuário. (Henrique Soares Assumpção e Silva)
+		- A partir das playlists selecionadas pelo usuário, unir músicas aleatórias destas e criar uma nova playlist para o usuário. (Henrique Soares Assumpção e Silva)
